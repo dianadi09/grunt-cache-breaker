@@ -1,8 +1,8 @@
 "use strict";
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
 
-    grunt.registerMultiTask("cachebreaker", "Rewrite links with timestamps or hashes", function () {
+    grunt.registerMultiTask("cachebreaker", "Rewrite links with timestamps or hashes", function() {
 
         var options = this.options();
 
@@ -12,14 +12,14 @@ module.exports = function (grunt) {
 
         var cb = require("cache-breaker");
 
-        this.files.forEach(function (f) {
+        this.files.forEach(function(f) {
 
             if (!f.src.length) {
                 return grunt.fail.warn("No source files were found.");
             }
 
             f.src
-                .forEach(function (filepath) {
+                .forEach(function(filepath) {
 
                     var dest = filepath;
 
@@ -28,7 +28,8 @@ module.exports = function (grunt) {
                     }
 
                     var input = grunt.file.read(filepath);
-                    var broken = cb.breakCache(input, options.match, options);
+                    options.currPath = filepath.split("/")[0];
+                    var broken = cb.breakCache(input, options);
 
                     if (broken.length) {
                         grunt.log.ok("Cache broken in: " + filepath.cyan);
