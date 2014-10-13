@@ -39,6 +39,6 @@
         "break"
     ],
     "dependencies": {
-        "cache-breaker": "git@github.com/dianadi09/cache-breaker.git#master"
+        "cache-breaker": "git+https://github.com/dianadi09/cache-breaker.git#master"
     }
 }
